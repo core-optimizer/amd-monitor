@@ -12,15 +12,13 @@ A lightweight monitoring tool for AMD Instinct GPUs (MI300X and similar) with a 
 
 ## Features
 
-- Real-time GPU monitoring via `amd-smi`
-- Minimalist dark-themed web dashboard
+- Real-time GPU monitoring with web dashboard
 - Per-XCD clock visualization (for MI300X with 8 compute dies)
 - Memory bandwidth utilization tracking
 - ECC error monitoring
 - Prometheus metrics endpoint
 - **Single-node mode**: Run on individual machines
 - **Cluster mode**: Aggregate metrics from all nodes in a Kubernetes cluster
-- Single binary with embedded frontend
 
 ## Architecture
 
