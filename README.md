@@ -84,8 +84,8 @@ Container images are available on GitHub Container Registry (ghcr.io). See the r
 
 | Image | Description |
 |-------|-------------|
-| `ghcr.io/<org>/amd-monitor` | Collector - runs on GPU nodes, collects metrics |
-| `ghcr.io/<org>/amd-aggregator` | Aggregator - central dashboard for cluster view |
+| `ghcr.io/core-optimizer/amd-monitor` | Collector - runs on GPU nodes, collects metrics |
+| `ghcr.io/core-optimizer/amd-aggregator` | Aggregator - central dashboard for cluster view |
 
 ## Quick Start
 
@@ -98,25 +98,10 @@ docker run --rm -it \
   --device=/dev/dri \
   --privileged \
   -p 8080:8080 \
-  ghcr.io/<org>/amd-monitor:latest
+  ghcr.io/core-optimizer/amd-monitor:latest
 ```
 
 Open http://localhost:8080 in your browser.
-
-### Single Node (with host ROCm)
-
-If you prefer using the host's ROCm installation:
-
-```bash
-docker run --rm -it \
-  --privileged \
-  -v /sys:/sys:ro \
-  -v /dev/dri:/dev/dri \
-  -v /opt/rocm:/opt/rocm:ro \
-  -e PATH="/opt/rocm/bin:$PATH" \
-  -p 8080:8080 \
-  ghcr.io/<org>/amd-monitor:latest
-```
 
 ### Kubernetes Cluster
 
@@ -245,21 +230,6 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_ip]
         target_label: __address__
         replacement: '${1}:8080'
-```
-
-## Building from Source
-
-Requirements:
-- Go 1.25+
-- Node.js 22+
-- Docker with buildx (for container builds)
-
-```bash
-# Build both binaries locally
-make build
-
-# Run locally
-make dev
 ```
 
 ## Troubleshooting
