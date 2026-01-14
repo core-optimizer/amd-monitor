@@ -1,0 +1,23 @@
+Attribution-NonCommercial Software License (ANCSL) v1.0
+Copyright (c) 2026 core-optimizer.com
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, and distribute the Software, subject to the following conditions:
+1. Attribution Requirement
+Any use, reproduction, or distribution of the Software, or any portion thereof, must include clear and prominent attribution to the original author(s). This attribution must include:
+
+The name of the original author(s) or copyright holder(s)
+A link to the original source repository (if applicable)
+This license notice in its entirety
+
+Any derivative works must clearly state that changes were made and must not misrepresent the original Software.
+2. Non-Commercial Use Only
+The Software may not be used, in whole or in part, for any commercial purpose. "Commercial purpose" includes, but is not limited to:
+
+Sale of the Software or derivative works
+Use in products or services sold for profit
+Use in a commercial environment to generate revenue
+Use by a for-profit organization for internal business operations
+
+3. No Sublicensing
+You may not sublicense the Software under different terms. Any distribution must be under this same license.
+4. Disclaimer of Warranty
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
