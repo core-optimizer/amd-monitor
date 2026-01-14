@@ -1,0 +1,109 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: amd-monitor-aggregator
+  namespace: amd-monitor
+---
+# RBAC: Allow aggregator to list pods
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: amd-monitor-aggregator
+  namespace: amd-monitor
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["list", "get", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: amd-monitor-aggregator
+  namespace: amd-monitor
+subjects:
+  - kind: ServiceAccount
+    name: amd-monitor-aggregator
+roleRef:
+  kind: Role
+  name: amd-monitor-aggregator
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amd-monitor-aggregator
+  namespace: amd-monitor
+  labels:
+    app: amd-monitor
+    component: aggregator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amd-monitor
+      component: aggregator
+  template:
+    metadata:
+      labels:
+        app: amd-monitor
+        component: aggregator
+    spec:
+      serviceAccountName: amd-monitor-aggregator
+      containers:
+        - name: aggregator
+          image: ghcr.io/core-optimizer/amd-aggregator:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: AMD_MONITOR_PORT
+              value: "8080"
+            - name: AMD_MONITOR_INTERVAL
+              value: "5s"
+            - name: AMD_MONITOR_LOG_LEVEL
+              value: "info"
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 10
+---
+# Service to expose the aggregator dashboard
+apiVersion: v1
+kind: Service
+metadata:
+  name: amd-monitor
+  namespace: amd-monitor
+  labels:
+    app: amd-monitor
+    component: aggregator
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: amd-monitor
+    component: aggregator
