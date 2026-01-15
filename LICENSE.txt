@@ -1,5 +1,5 @@
 Attribution-NonCommercial Software License (ANCSL) v1.0
-Copyright (c) 2026 core-optimizer.com
+Copyright (c) 2026 coreoptimizer.com
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, and distribute the Software, subject to the following conditions:
 1. Attribution Requirement
 Any use, reproduction, or distribution of the Software, or any portion thereof, must include clear and prominent attribution to the original author(s). This attribution must include:
